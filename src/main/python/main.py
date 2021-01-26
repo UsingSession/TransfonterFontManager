@@ -45,6 +45,7 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
   def init_UI(self):
     self.setWindowTitle('File Manager for file')
     self.input_substring.setPlaceholderText('Enter the input string.')
+    self.input_substring.setText('subset-')
     self.directory_button.setIcon(QIcon(str(pathlib.Path(__file__).parent.absolute()) + '/static/img/' + 'folder.png')) 
     self.directory_button.clicked.connect(self.openDirectory)
     self.run_button.clicked.connect(self.run)
