@@ -1,0 +1,18 @@
+# Ignore bytecode
+*.pyc
+*.pyo
+
+**/__pycache__/
+
+# Ignore configuration files directory
+**/config/
+
+# Ignore data and log directory
+**/data/
+**/logs/
+
+# Custom
+.vscode
+
+target
+venv

@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="windowModality">
+   <enum>Qt::WindowModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>420</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>420</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>420</width>
+    <height>300</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>-1</pointsize>
+   </font>
+  </property>
+  <property name="windowTitle">
+   <string>File Manager</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background: #fff;
+font-size: 18px;</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="tabletTracking">
+    <bool>true</bool>
+   </property>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>180</y>
+      <width>391</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;</string>
+    </property>
+    <property name="text">
+     <string>Group file to folder by name</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="run_button">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>230</y>
+      <width>401</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <weight>62</weight>
+      <bold>true</bold>
+      <underline>false</underline>
+      <strikeout>false</strikeout>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#run_button{
+background-color: #4CAF50;
+border: 1px solid #4CAF50;
+color: white;
+text-align: center;
+text-decoration: none;
+font-size: 18px;
+font-weight: 500;
+}
+#run_button:hover{
+background: #fff;
+color: #4CAF50;
+}</string>
+    </property>
+    <property name="text">
+     <string>Run process</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="directory_button">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>20</y>
+      <width>171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#directory_button {
+  font-size: 16px;
+  font-weight: 400;
+  width: 100%;
+  color: #FFF;
+  border: 4px solid #000;
+  background-color: #000;
+}
+#directory_button:hover{
+  border: 4px solid #666;
+  background-color: #FFF;
+	color: #000;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Open directory</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>../src/main/icons/ui/folder.png</normaloff>../src/main/icons/ui/folder.png</iconset>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="input_substring">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>120</y>
+      <width>391</width>
+      <height>31</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QLabel" name="input_label">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>90</y>
+      <width>231</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background: transparent;</string>
+    </property>
+    <property name="text">
+     <string>Enter substring to remove it</string>
+    </property>
+   </widget>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
