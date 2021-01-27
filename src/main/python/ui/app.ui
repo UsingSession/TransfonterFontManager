@@ -13,19 +13,19 @@
     <x>0</x>
     <y>0</y>
     <width>420</width>
-    <height>300</height>
+    <height>200</height>
    </rect>
   </property>
   <property name="minimumSize">
    <size>
     <width>420</width>
-    <height>300</height>
+    <height>180</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
     <width>420</width>
-    <height>300</height>
+    <height>350</height>
    </size>
   </property>
   <property name="font">
@@ -34,7 +34,14 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>File Manager</string>
+   <string>Transfonter Font Manager</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../static/img/favicon.png</normaloff>../static/img/favicon.png</iconset>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
   </property>
   <property name="styleSheet">
    <string notr="true">background: #fff;
@@ -47,9 +54,9 @@ font-size: 18px;</string>
    <widget class="QCheckBox" name="checkBox">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>180</y>
-      <width>391</width>
+      <x>220</x>
+      <y>107</y>
+      <width>180</width>
       <height>21</height>
      </rect>
     </property>
@@ -57,16 +64,19 @@ font-size: 18px;</string>
      <string notr="true">background: transparent;</string>
     </property>
     <property name="text">
-     <string>Group file to folder by name</string>
+     <string>Group into folders</string>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
     </property>
    </widget>
    <widget class="QPushButton" name="run_button">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>230</y>
-      <width>401</width>
-      <height>51</height>
+      <x>215</x>
+      <y>15</y>
+      <width>195</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="font">
@@ -104,13 +114,16 @@ color: #4CAF50;
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
-      <width>171</width>
-      <height>41</height>
+      <y>15</y>
+      <width>195</width>
+      <height>40</height>
      </rect>
     </property>
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="mouseTracking">
+     <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">#directory_button {
@@ -133,33 +146,85 @@ color: #4CAF50;
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>../src/main/icons/ui/folder.png</normaloff>../src/main/icons/ui/folder.png</iconset>
+      <normaloff>../static/img/folder.png</normaloff>../static/img/folder.png</iconset>
     </property>
    </widget>
    <widget class="QLineEdit" name="input_substring">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
-      <width>391</width>
-      <height>31</height>
+      <y>100</y>
+      <width>200</width>
+      <height>40</height>
      </rect>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">padding: 0 10px;</string>
+    </property>
+    <property name="inputMask">
+     <string/>
+    </property>
+    <property name="text">
+     <string>subset-</string>
+    </property>
+    <property name="placeholderText">
+     <string>Delete the string that contains</string>
+    </property>
+    <property name="cursorMoveStyle">
+     <enum>Qt::LogicalMoveStyle</enum>
+    </property>
+    <property name="clearButtonEnabled">
+     <bool>false</bool>
     </property>
    </widget>
    <widget class="QLabel" name="input_label">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>90</y>
-      <width>231</width>
-      <height>31</height>
+      <y>70</y>
+      <width>400</width>
+      <height>30</height>
      </rect>
     </property>
     <property name="styleSheet">
      <string notr="true">background: transparent;</string>
     </property>
     <property name="text">
-     <string>Enter substring to remove it</string>
+     <string>The file name contains</string>
+    </property>
+    <property name="textFormat">
+     <enum>Qt::AutoText</enum>
+    </property>
+   </widget>
+   <widget class="QProgressBar" name="progressBar">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>155</y>
+      <width>400</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="value">
+     <number>0</number>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignCenter</set>
+    </property>
+    <property name="textVisible">
+     <bool>true</bool>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Horizontal</enum>
+    </property>
+    <property name="invertedAppearance">
+     <bool>false</bool>
+    </property>
+    <property name="textDirection">
+     <enum>QProgressBar::TopToBottom</enum>
     </property>
    </widget>
   </widget>
