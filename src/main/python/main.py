@@ -6,7 +6,8 @@ from threading import Timer
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
 import pathlib, os, shutil, sys
 
-Form, _ = uic.loadUiType("app.ui")
+appctxt = ApplicationContext()
+Form, _ = uic.loadUiType(appctxt.get_resource("app.ui"))
 
 class TransfonterFontManager(QtWidgets.QMainWindow, Form):
   
@@ -61,7 +62,6 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
     self.run_button.clicked.connect(self.run)
 
 if __name__ == '__main__':
-  appctxt = ApplicationContext()
   window = TransfonterFontManager()
   window.show()
   exit_code = appctxt.app.exec_()
