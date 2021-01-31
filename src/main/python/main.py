@@ -1,11 +1,12 @@
 from PyQt5 import uic, QtWidgets
-import pathlib, os, shutil
 from PyQt5 import QtCore, QtGui, QtWidgets, QtCore
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtGui import QIcon
 from threading import Timer
+from fbs_runtime.application_context.PyQt5 import ApplicationContext
+import pathlib, os, shutil, sys
 
-Form, _ = uic.loadUiType(str(pathlib.Path(__file__).parent.absolute()) + '/ui/' + "app.ui")
+Form, _ = uic.loadUiType("app.ui")
 
 class TransfonterFontManager(QtWidgets.QMainWindow, Form):
   
@@ -54,12 +55,14 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
             shutil.move(dst, path + '/' + names + file_extension)
 
   def init_UI(self):
+    self.setWindowIcon(QIcon(appctxt.get_resource("favicon.png")))
+    self.directory_button.setIcon(QIcon(appctxt.get_resource("folder.png")))
     self.directory_button.clicked.connect(self.openDirectory)
     self.run_button.clicked.connect(self.run)
 
 if __name__ == '__main__':
-  import sys
-  app = QtWidgets.QApplication(sys.argv)
+  appctxt = ApplicationContext()
   window = TransfonterFontManager()
   window.show()
-  sys.exit(app.exec_())
+  exit_code = appctxt.app.exec_()
+  sys.exit(exit_code)
