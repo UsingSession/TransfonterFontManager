@@ -3,7 +3,6 @@
 class CollectionIterator:
 
   def __init__(self, items):
-    super(CollectionIterator, self).__init__()
     self.items = items
     self.callback = None
 
