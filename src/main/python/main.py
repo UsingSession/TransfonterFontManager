@@ -5,17 +5,28 @@ from PyQt5.QtGui import QIcon
 from threading import Timer
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
 import pathlib, os, shutil, sys
+from utility.collection_iterator import CollectionIterator
+
+from utility.copy import Copy
 
 appctxt = ApplicationContext()
 Form, _ = uic.loadUiType(appctxt.get_resource("app.ui"))
 
 class TransfonterFontManager(QtWidgets.QMainWindow, Form):
-  
+
   def __init__(self):
     super(TransfonterFontManager, self).__init__()
+
+    # Isolation of a class for processing
+    iterator = CollectionIterator([1,2,3, 9])
+    iterator.setCommands([Copy]).withAlter(self.alter).map()
+
     self.setupUi(self)
     self.init_UI()
     self.directory = '~/'
+
+  def alter(self, command, item):
+    print(item)
 
   def openDirectory(self, e):
     self.directory = QFileDialog.getExistingDirectory(None, 'Select a folder:', '', QFileDialog.ShowDirsOnly)
@@ -25,6 +36,7 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
     self.centralwidget.setEnabled(True)
     
   def run(self, e):
+    
     self.countFiles = len(os.listdir(self.directory))
     self.renameFiles()
     self.groupFiles()
