@@ -7,7 +7,7 @@ from fbs_runtime.application_context.PyQt5 import ApplicationContext
 import pathlib, os, shutil, sys
 from utility.collection_iterator import CollectionIterator
 
-from utility.copy import Copy
+from commands.copy_command import CopyCommand
 
 appctxt = ApplicationContext()
 Form, _ = uic.loadUiType(appctxt.get_resource("app.ui"))
@@ -16,17 +16,11 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
 
   def __init__(self):
     super(TransfonterFontManager, self).__init__()
-
     # Isolation of a class for processing
-    iterator = CollectionIterator([1,2,3, 9])
-    iterator.setCommands([Copy]).withAlter(self.alter).map()
-
+    self.iterator = CollectionIterator
     self.setupUi(self)
     self.init_UI()
     self.directory = '~/'
-
-  def alter(self, command, item):
-    print(item)
 
   def openDirectory(self, e):
     self.directory = QFileDialog.getExistingDirectory(None, 'Select a folder:', '', QFileDialog.ShowDirsOnly)
@@ -36,8 +30,11 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
     self.centralwidget.setEnabled(True)
     
   def run(self, e):
+    self.textEdit.setText('')
+    self.iterator(os.listdir(self.directory)).setCommands([
+      CopyCommand
+    ]).setAlter(self.viewAlter).map()
     
-    self.countFiles = len(os.listdir(self.directory))
     self.renameFiles()
     self.groupFiles()
     self.progressBar.setValue(100)
@@ -48,7 +45,6 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
     str_replace = self.input_substring.text()
     if str_replace:
       for count, filename in enumerate(os.listdir(self.directory)):
-        self.progressBar.setValue(round((count * 100) / self.countFiles))
         if not os.path.isdir(os.path.join(self.directory, filename)):
           names, file_extension = os.path.splitext(filename)
           dst = self.directory + '/' + names.replace(str_replace, '') + file_extension
@@ -58,7 +54,6 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
   def groupFiles(self):
     if self.checkBox.isChecked():
       for count, filename in enumerate(os.listdir(self.directory)):
-        self.progressBar.setValue(round((count * 100) / self.countFiles))
         if not os.path.isdir(os.path.join(self.directory, filename)):
             names, file_extension = os.path.splitext(filename)
             dst = self.directory + '/' + names + file_extension
@@ -67,11 +62,17 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
               os.mkdir(path)
             shutil.move(dst, path + '/' + names + file_extension)
 
+  def viewAlter(self, command, mutationItem, items):
+    self.progressBar.setValue(round((items.index(mutationItem) * 100) / len(items)))
+    isNewLine = '\n' if self.textEdit.toPlainText() else ''
+    self.textEdit.setText(self.textEdit.toPlainText() + isNewLine + command.getProcessName() + ' ' + str(mutationItem))
+
   def init_UI(self):
     self.setWindowIcon(QIcon(appctxt.get_resource("favicon.png")))
     self.directory_button.setIcon(QIcon(appctxt.get_resource("folder.png")))
     self.directory_button.clicked.connect(self.openDirectory)
     self.run_button.clicked.connect(self.run)
+    self.textEdit.setReadOnly(True)
 
 if __name__ == '__main__':
   window = TransfonterFontManager()
