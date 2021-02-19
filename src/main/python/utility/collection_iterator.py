@@ -3,8 +3,10 @@
 class CollectionIterator:
 
   def __init__(self, items):
-    self.items = items
-    self.callback = None
+    self.items      = items
+    self.itemsLen   = len(items)
+    self.callback   = None
+    self.curentPos  = None
 
   def setCommands(self, commands):
     self.commands = commands
@@ -13,7 +15,7 @@ class CollectionIterator:
   def getCommands(self):
     return self.commands
 
-  def withAlter(self, callback):
+  def setAlter(self, callback):
     self._callback = callback
     return self
 
@@ -25,5 +27,5 @@ class CollectionIterator:
     for command in self.commands:
       mutationItem = command.process(item)
       if self._callback != None:
-        self._callback(command, mutationItem)
+        self._callback(command, mutationItem, self.items)
       return mutationItem
