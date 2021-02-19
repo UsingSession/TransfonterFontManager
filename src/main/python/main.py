@@ -67,9 +67,12 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
     isNewLine = '\n' if self.textEdit.toPlainText() else ''
     self.textEdit.setText(self.textEdit.toPlainText() + isNewLine + command.getProcessName() + ' ' + str(mutationItem))
 
+  def getIcon(self, name):
+    return QIcon(appctxt.get_resource(name))
+
   def init_UI(self):
-    self.setWindowIcon(QIcon(appctxt.get_resource("favicon.png")))
-    self.directory_button.setIcon(QIcon(appctxt.get_resource("folder.png")))
+    self.setWindowIcon(self.getIcon("favicon.png"))
+    self.directory_button.setIcon(self.getIcon("folder.png"))
     self.directory_button.clicked.connect(self.openDirectory)
     self.run_button.clicked.connect(self.run)
     self.textEdit.setReadOnly(True)
