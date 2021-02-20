@@ -227,7 +227,7 @@ color: #4CAF50;
      <enum>QProgressBar::TopToBottom</enum>
     </property>
    </widget>
-   <widget class="QTextEdit" name="textEdit">
+   <widget class="QTextEdit" name="processMessage">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -238,6 +238,30 @@ color: #4CAF50;
       <width>400</width>
       <height>140</height>
      </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>-1</pointsize>
+      <weight>87</weight>
+      <bold>true</bold>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">#processMessage {
+ font-size: 12px;
+background: #31363b;
+color: #fff;
+padding: 10px;
+opacity: 1;
+font-weight: 700;
+}
+</string>
+    </property>
+    <property name="tabStopWidth">
+     <number>85</number>
+    </property>
+    <property name="placeholderText">
+     <string/>
     </property>
    </widget>
   </widget>
