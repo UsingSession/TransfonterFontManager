@@ -18,7 +18,7 @@ class CollectionIterator:
   def iteration(self,item):
     for command in self.commands:
       if self.isValidCommand(command):
-        doProcess = 
+        doProcess = command.willDoProcess(item, self.contextConfig)
         if not doProcess:
           return item
         else:
