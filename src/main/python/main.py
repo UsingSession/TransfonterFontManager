@@ -1,5 +1,5 @@
 import os, sys
-from PyQt5 import uic, QtWidgets, QtCore, QtGui, QtWidgets, QtCore
+from PyQt5 import uic, QtWidgets, QtCore, QtGui
 from PyQt5.QtWidgets import QFileDialog
 from PyQt5.QtGui import QIcon
 from threading import Timer
