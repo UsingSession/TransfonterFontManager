@@ -1,6 +1,7 @@
 import os
+from commands.abstract_command import AbstractCommand
 
-class RenameCommand():
+class RenameCommand(AbstractCommand):
 
   @staticmethod
   def getProcessName():
@@ -17,3 +18,6 @@ class RenameCommand():
         os.rename(src, dst)
         return names.replace(str_replace, '') + file_extension
     return item
+
+  def willDoProcess(item, contextConfig):
+    return True

@@ -1,12 +1,11 @@
 import os, shutil
+from commands.abstract_command import AbstractCommand
 
-class GroupCommand():
+class GroupCommand(AbstractCommand):
 
-  @staticmethod
   def getProcessName():
     return 'Moving file: '
 
-  @staticmethod
   def process(item, contextConfig):
     name = item
     if contextConfig.checkBox.isChecked():
@@ -19,3 +18,6 @@ class GroupCommand():
           shutil.move(dst, path + '/' + names + file_extension)
           name = names + file_extension
     return name
+  
+  def willDoProcess(item, contextConfig):
+    return True
