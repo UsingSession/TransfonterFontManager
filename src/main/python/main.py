@@ -6,6 +6,7 @@ from threading import Timer
 from fbs_runtime.application_context.PyQt5 import ApplicationContext
 # Project scripts
 from utility.collection_iterator import CollectionIterator
+from commands.valid_file import ValidFile
 from commands.rename_command import RenameCommand
 from commands.group_command import GroupCommand
 
@@ -31,6 +32,7 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
   def run(self, e):
     self.processMessage.setText('')
     self.iterator(os.listdir(self.directory)).setCommands([
+      ValidFile,
       RenameCommand,
       GroupCommand,
     ]).setContextConfig(self).setAlter(self.viewAlter).map()
