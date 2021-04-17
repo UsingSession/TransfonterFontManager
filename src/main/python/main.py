@@ -54,7 +54,13 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
     self.directory_button.setIcon(self.getIcon("folder.png"))
     self.directory_button.clicked.connect(self.openDirectory)
     self.run_button.clicked.connect(self.run)
+    self.fontFaceGenerator.stateChanged.connect(self.collapse_input)
     self.processMessage.setReadOnly(True)
+
+  def collapse_input(self):
+    ffName    = self.inputFontFaceFileName
+    isChecked = self.fontFaceGenerator.isChecked()
+    ffName.setHidden(not isChecked)
 
 if __name__ == '__main__':
   window = TransfonterFontManager()
