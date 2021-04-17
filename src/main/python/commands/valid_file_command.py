@@ -1,7 +1,7 @@
 import os, shutil
 from commands.abstract_command import AbstractCommand
 
-class ValidFile(AbstractCommand):
+class ValidFileCommand(AbstractCommand):
 
   def getProcessName():
     return 'Check file: '
