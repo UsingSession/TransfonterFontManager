@@ -9,6 +9,7 @@ from utility.collection_iterator import CollectionIterator
 from commands.valid_file_command import ValidFileCommand
 from commands.rename_command import RenameCommand
 from commands.group_command import GroupCommand
+from commands.font_face_command import FontFaceCommand
 
 appctxt = ApplicationContext()
 Form, _ = uic.loadUiType(appctxt.get_resource("app.ui"))
@@ -35,7 +36,7 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
       ValidFileCommand,
       RenameCommand,
       GroupCommand,
-    ]).setContextConfig(self).setAlter(self.viewAlter).map()
+    ]).setContextConfig(self).setAlter(self.viewAlter).map().end(self.alterEnd)
 
     self.progressBar.setValue(100)
     self.centralwidget.setDisabled(True)
@@ -45,6 +46,9 @@ class TransfonterFontManager(QtWidgets.QMainWindow, Form):
     self.progressBar.setValue(round((items.index(mutationItem) * 100) / len(items)))
     isNewLine = '\n' if self.processMessage.toPlainText() else ''
     self.processMessage.setText(self.processMessage.toPlainText() + isNewLine + '-> ' +  command.getProcessName() + ' ' + str(mutationItem))
+
+  def alterEnd(self, items):
+    FontFaceCommand.process(items, self)
 
   def getIcon(self, name):
     return QIcon(appctxt.get_resource(name))
