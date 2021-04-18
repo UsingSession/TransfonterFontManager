@@ -14,6 +14,10 @@ class CollectionIterator:
   def map(self):
     for result in map(self.iteration, self.items):
       pass
+    return self
+
+  def end(self, callback ):
+    callback(self.items)
 
   def iteration(self,item):
     for command in self.commands:
